@@ -3,50 +3,62 @@
 // size(), empty(), push(), peek(), pop(). 
 
 public class MyStack {
-    Object[] arr;
+    private Object[] arr;
+    private int defaultCapacity = 8;
+    private int size = 0;
 
     public MyStack() {
-        arr = new Object[8];
+        arr = new Object[defaultCapacity];
+    }
+
+    public MyStack(int capacity) {
+        arr = new Object[capacity];
     }
 
     public int size() {
-        int size = 0;
-        for (Object obj : this.arr) {
-            if (obj != null) {
-                size++;
-            }
-        }
-
         return size;
     }
 
     public void push(Object obj) {
-        if (this.size() < this.arr.length) {
-            this.arr[this.size()] = obj;
+        if (size() < arr.length) {
+            arr[size()] = obj;
         } else {
-            Object[] newArr = new Object[this.size() * 2];
-            System.arraycopy(this.arr, 0, newArr, 0, this.size());
-            this.arr = newArr;
-            this.arr[this.size()] = obj;
+            Object[] newArr = new Object[(int) (size() * 1.5) + 1];
+            System.arraycopy(arr, 0, newArr, 0, size());
+            arr = newArr;
+            arr[size()] = obj;
         }
+        size++;
     }
 
     public Object peek() {
-        return this.arr[this.size() - 1];
+        if (size() > 0) {
+            return arr[size() - 1];
+        }
+
+        return null;
     }
 
     public Object pop() {
-        Object value = this.arr[this.size() - 1];
-        this.arr[this.size() - 1] = null;
+        if (size() > 0) {
+            Object value = arr[size() - 1];
+            arr[size() - 1] = null;
+            size--;
+            return value;
+        }
 
-        return value;
+        return null;
     }
 
     public String toString() {
+        if (size() <= 0) {
+            return "[]";
+        }
+
         StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < this.size(); i++) {
-            sb.append(this.arr[i]);
-            sb.append(i < this.size() - 1 ? ", " : "]");
+        for (int i = 0; i < size(); i++) {
+            sb.append(arr[i]);
+            sb.append(i < size() - 1 ? ", " : "]");
         }
 
         return sb.toString();

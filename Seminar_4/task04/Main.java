@@ -21,5 +21,12 @@ public class Main {
         System.out.println(mStack.pop());
         System.out.println(mStack);
         System.out.println(mStack.size());
+
+        int iMax = mStack.size() + 1;
+        for (int i = 0; i < iMax; i++) {
+            System.out.println(mStack.pop());
+        }
+        System.out.println(mStack);
+        System.out.println(mStack.size());
     }
 }
