@@ -2,21 +2,21 @@ import java.util.LinkedList;
 
 class MyQueue<T> {
     // Напишите свое решение ниже
-    public LinkedList<T> ll = new LinkedList<>();
+    private LinkedList<T> ll = new LinkedList<>();
 
     public void enqueue(T element) {
         // Напишите свое решение ниже
-        this.ll.add(element);
+        ll.add(element);
     }
 
     public T dequeue() {
         // Напишите свое решение ниже
-        return this.ll.pop();
+        return ll.pop();
     }
 
     public T first() {
         // Напишите свое решение ниже
-        return this.ll.peek();
+        return ll.peek();
 
     }
 
